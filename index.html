@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmown - Pharmaceutical Consultancy Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1e3c72;
+            --secondary-color: #2a5298;
+            --accent-color: #00bfa5;
+            --accent-light: #4dd0e1;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f5f7fa;
+            --border-color: #e0e0e0;
+            --success: #4caf50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.4) 0%, rgba(42, 82, 152, 0.4) 100%), 
+                        url('https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/67661b64-d185-4e61-86df-022454b2649b') center/cover no-repeat;
+            background-attachment: fixed;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            letter-spacing: 0.5px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.98;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 191, 165, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section */
+        section {
+            padding: 80px 20px;
+        }
+
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--bg-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .about-text h3 {
+            color: var(--secondary-color);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .mission-card, .vision-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .mission-card h3, .vision-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .mission-card p, .vision-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* CEO Message */
+        .ceo-section {
+            background: white;
+        }
+
+        .ceo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .ceo-profile {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .ceo-image {
+            width: 200px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 4px solid var(--accent-color);
+        }
+
+        .ceo-profile h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .ceo-title {
+            font-size: 16px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .ceo-credentials {
+            font-size: 13px;
+            line-height: 1.8;
+            opacity: 0.85;
+        }
+
+        .ceo-message {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--text-light);
+        }
+
+        .ceo-message p {
+            margin-bottom: 15px;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--bg-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0;
+            font-size: 18px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .stat-item h3 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .stat-item p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Why Choose Us */
+        .why-choose {
+            background-color: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-light);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .value-item:hover {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+        }
+
+        .value-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .value-item:hover h3 {
+            color: var(--accent-color);
+        }
+
+        /* Certifications */
+        .certifications {
+            background-color: var(--bg-light);
+        }
+
+        .cert-content {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cert-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cert-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .cert-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .cert-text h3 {
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .cert-text p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact h2::after {
+            background: var(--accent-light);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .contact-item h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .contact-item p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .contact-item a {
+            color: var(--accent-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: white;
+        }
+
+        /* Global Presence */
+        .global-presence {
+            background-color: white;
+        }
+
+        .countries-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .country-badge {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .country-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Client Reviews */
+        .reviews {
+            background-color: var(--bg-light);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .review-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .review-card .stars {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .review-card p {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .review-card .reviewer {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+        }
+
+        .review-card .reviewer-title {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero .tagline {
+                font-size: 16px;
+            }
+
+            .about-content, .ceo-content, .mission-vision {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            section h2 {
+                font-size: 28px;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 10px;
+                display: block;
+            }
+
+            .stats-grid, .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">PHARM<span>OWN</span></div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#global">Global Presence</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="tagline">Pharmaceutical Consultancy Services</div>
+            <h1>Excellence in Healthcare Solutions</h1>
+            <p>22+ Years of Expertise | ISO 9001:2015 Certified | National & International Experience</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Pharmown</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Who We Are</h3>
+                    <p>Pharmown Consultancy Services is a knowledge-driven group providing comprehensive consultancy and project management services to renowned national and international pharmaceutical manufacturing industries.</p>
+                    <p>With over 22 years of experience, we have successfully guided numerous companies from establishment through regulatory compliance and market expansion.</p>
+                </div>
+                <div class="about-text">
+                    <h3>Our Approach</h3>
+                    <p>We follow a proven success strategy to build and maintain client trust through unwavering commitment and dedication.</p>
+                    <p>Our focus is on improving the health and quality of life worldwide by contributing meaningfully to the pharmaceutical and healthcare industries through innovation and expertise.</p>
+                </div>
+            </div>
+
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <h3>Our Mission</h3>
+                    <p>To produce the best quality resources and services meeting the highest criteria. We aim to achieve superior reputation among clients by dedicating our complete energy to advancing the healthcare industry.</p>
+                </div>
+                <div class="vision-card">
+                    <h3>Our Vision</h3>
+                    <p>To establish a high-profile position in the healthcare consultancy industry. We envision providing exceptional quality resources and transparent services to customers worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CEO Message -->
+    <section class="ceo-section">
+        <div class="container">
+            <h2>Leadership</h2>
+            <div class="ceo-content">
+                <div class="ceo-profile">
+                    <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/6dee7a9b-6ede-4930-aa18-6440c4ce6d9b" alt="Dr. Syed Sohail Raza" class="ceo-image">
+                    <h3>Dr. Syed Sohail Raza</h3>
+                    <p class="ceo-title">Founder & CEO</p>
+                    <div class="ceo-credentials">
+                        <p>PhD (Fellow), MSc (Molecular Biology)</p>
+                        <p>D.H.M.S (Silver Medalist)</p>
+                        <p>Certificate in Ultrasonography</p>
+                        <p>Ex-Quality Control Manager</p>
+                        <p>Ex-GM (Pharmaceuticals)</p>
+                    </div>
+                </div>
+                <div class="ceo-message">
+                    <p><strong>Pharmown Consultancy Services</strong> represents a unique philosophy and completely different perspective in the pharmaceutical consultancy space.</p>
+                    <p>We have evolved into a knowledge-driven group providing world-class consultancy and project management services. Our success is built on winning client trust through keen commitment and dedication.</p>
+                    <p>Our aspiration is to focus on the health and quality of life for people worldwide by contributing meaningfully to the healthcare industry. We continuously seek ways to improve all business facets and enable growth by partnering with clients to solve challenges through technology and innovation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Development of Infrastructure</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Manufacturing Machinery & QC Equipment</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Inspection Guidelines</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Regulatory Services for DML</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Dossier & Documentation</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Product Registration</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Training for Manufacturing</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Quality Testing Procedures & Training</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Testing Facility for WHO, PCSIR, PSQCA</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Trademark & Company Registration</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Registration for Export</h3>
+                </div>
+                <div class="service-card">
+                    <h3>CTD Dossiers</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Registration DEMAR</h3>
+                </div>
+                <div class="service-card">
+                    <h3>CM License</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Food Licensing Services</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Registration of Firm for Import</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Product Franchising</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Handling of Drug Court Cases</h3>
+                </div>
+                <div class="service-card">
+                    <h3>Drug Distribution License</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">🤝</div>
+                    <h3>460+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">✓</div>
+                    <h3>150+</h3>
+                    <p>Completed Projects</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">📋</div>
+                    <h3>19,000+</h3>
+                    <p>Registered Brands</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">⚙️</div>
+                    <h3>5+</h3>
+                    <p>On-going Projects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <div class="container">
+            <h2>Why Choose Pharmown</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 40px;">It's our attention to details, timeline management, and keen project oversight that sets us apart.</p>
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>Reliability</h3>
+                    <p>Consistent, dependable service you can trust</p>
+                </div>
+                <div class="value-item">
+                    <h3>Quality</h3>
+                    <p>Excellence in every aspect of our work</p>
+                </div>
+                <div class="value-item">
+                    <h3>Services</h3>
+                    <p>Comprehensive solutions for all needs</p>
+                </div>
+                <div class="value-item">
+                    <h3>Honesty</h3>
+                    <p>Transparent and ethical practices</p>
+                </div>
+                <div class="value-item">
+                    <h3>Teamwork</h3>
+                    <p>Collaborative partnerships with clients</p>
+                </div>
+                <div class="value-item">
+                    <h3>Innovation</h3>
+                    <p>Forward-thinking solutions and strategies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications" id="certifications">
+        <div class="container">
+            <h2>Certifications & Registrations</h2>
+            <div class="cert-content">
+                <div class="cert-item">
+                    <div class="cert-icon">ISO</div>
+                    <div class="cert-text">
+                        <h3>ISO 9001:2015 Certified</h3>
+                        <p>Quality Management System | Certificate # PKIQS-Q11323027 | Accredited by EUAS</p>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">SECP</div>
+                    <div class="cert-text">
+                        <h3>SECP Registration</h3>
+                        <p>Securities and Exchange Commission of Pakistan | Reg. # 0150345</p>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">FBR</div>
+                    <div class="cert-text">
+                        <h3>FBR Registration</h3>
+                        <p>Federal Board of Revenue | NTN # 8161009</p>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">✓</div>
+                    <div class="cert-text">
+                        <h3>National & International Partnerships</h3>
+                        <p>Trusted by leading pharmaceutical companies across Pakistan, Turkey, China, Somalia, Korea, Dubai, and Afghanistan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Presence -->
+    <section class="global-presence" id="global">
+        <div class="container">
+            <h2>Worldwide Work</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 30px;">We operate across multiple countries and continents</p>
+            <div class="countries-list">
+                <div class="country-badge">🇵🇰 Pakistan</div>
+                <div class="country-badge">🇹🇷 Turkey</div>
+                <div class="country-badge">🇨🇳 China</div>
+                <div class="country-badge">🇸🇴 Somalia</div>
+                <div class="country-badge">🇰🇷 Korea</div>
+                <div class="country-badge">🇦🇪 Dubai</div>
+                <div class="country-badge">🇦🇫 Afghanistan</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Reviews -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <h2>Client Reviews</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"We are very pleased not only with the end result, but with the entire process of working with Pharmown. The amount of patience, guidance and knowledge that they displayed throughout the whole process made them a very easy and enjoyable partner to work with"</p>
+                    <div class="reviewer">Mr. Usman Cheema</div>
+                    <div class="reviewer-title">CEO, Abiotic Healthcare (SMC-Pvt.), Rawalpindi</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p>"We trust the team at Pharmown completely and quite frankly are involved in very little of what they do for us. They truly understand the complications and what is needed to make it work"</p>
+                    <div class="reviewer">Ghulam Rabbani</div>
+                    <div class="reviewer-title">CEO, Akron Pharmaceuticals, Jhelum</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Phone</h3>
+                    <p><a href="tel:+923215031118">+92 321 5031118</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:dms.ambrosia@gmail.com">dms.ambrosia@gmail.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>Address</h3>
+                    <p>Plot 273/6, Street 89, Block D<br>PAEC Housing Society, Rawat<br>Islamabad, Pakistan</p>
+                </div>
+            </div>
+            <a href="mailto:dms.ambrosia@gmail.com" class="btn">Send Inquiry</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Pharmown Consultancy Services (SMC-Private) Limited. All rights reserved.</p>
+        <p>Bringing pharmaceutical expertise and innovation to healthcare globally.</p>
+    </footer>
+</body>
+</html>
